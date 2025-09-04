@@ -52,6 +52,13 @@
         "min": 0,
         "max": 100
       }
+    },
+    {
+      "code": "removeFarmlandAdjacentWaterSound",
+      "ingui": "Remove Farmland water sound",
+      "type": "boolean",
+      "comment": "Removes random sloshing sound for water blocks that have farmland in 1 block radius. You know why.",
+      "default": true
     }
 
   ]
