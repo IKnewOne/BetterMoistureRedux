@@ -15,11 +15,11 @@ public class BetterMoistureReduxModSystem : ModSystem {
 			config = api.LoadModConfig<ModConfig>(ModConfig.ConfigName);
 			if (config == null) {
 				config = new ModConfig();
-				Mod.Logger.VerboseDebug("[BetterMoistureRedux] Config file not found, creating a new one...");
+				Logger.VerboseDebug("[BetterMoistureRedux] Config file not found, creating a new one...");
 			}
 			api.StoreModConfig(config, ModConfig.ConfigName);
 		} catch (Exception e) {
-			Mod.Logger.Error("[BetterMoistureRedux] Failed to load config, you probably made a typo: {0}", e);
+			Logger.Error("[BetterMoistureRedux] Failed to load config, you probably made a typo: {0}", e);
 			config = new ModConfig();
 		}
 	}
