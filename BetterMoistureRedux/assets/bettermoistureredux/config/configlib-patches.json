@@ -1,7 +1,14 @@
 {
-  "version": 3,
+  "version": 4,
   "file": "BetterMoistureRedux.json",
   "settings": [
+    {
+      "code": "overwriteLowerThanVanillaValues",
+      "ingui": "Overwrite lower than vanilla values",
+      "type": "boolean",
+      "comment": "If this is disabled, you can set the radius values to lower than vanilla, something like 50-20-80, and the respective blocks will have this water value. Otherwise with Vanilla being 100-75-50, you will have 100-75-80 moisture values.",
+      "default": false
+    },
     {
       "code": "radius1",
       "ingui": "R1 Moisture",

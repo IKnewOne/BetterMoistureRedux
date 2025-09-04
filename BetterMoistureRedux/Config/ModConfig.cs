@@ -19,7 +19,5 @@ public class ModConfig {
 	public int radius3 = 60;
 	public int radius4 = 0;
 
-	public int HoursToFullyDry = 48;
-
-	public float RainImpact = 0.33f;
+	public bool overwriteLowerThanVanillaValues = false;
 }
