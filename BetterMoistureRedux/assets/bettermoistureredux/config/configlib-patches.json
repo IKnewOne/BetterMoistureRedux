@@ -1,0 +1,51 @@
+{
+  "version": 3,
+  "file": "BetterMoistureRedux.json",
+  "settings": [
+    {
+      "code": "radius1",
+      "ingui": "R1 Moisture",
+      "type": "integer",
+      "comment": "Radius 1 moisture value",
+      "default": 100,
+      "range": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    {
+      "code": "radius2",
+      "ingui": "R2 Moisture",
+      "type": "integer",
+      "comment": "Radius 2 moisture value",
+      "default": 80,
+      "range": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    {
+      "code": "radius3",
+      "ingui": "R3 Moisture",
+      "type": "integer",
+      "comment": "Radius 3 moisture value",
+      "default": 60,
+      "range": {
+        "min": 0,
+        "max": 100
+      }
+    },
+    {
+      "code": "radius4",
+      "ingui": "[WARNING] R4+ Moisture",
+      "type": "integer",
+      "comment": "[BEST KEPT AT 0] This value is used for any >3. I claim no responsibility.",
+      "default": 0,
+      "range": {
+        "min": 0,
+        "max": 100
+      }
+    }
+
+  ]
+}
