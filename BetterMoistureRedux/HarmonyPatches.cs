@@ -12,12 +12,13 @@ namespace BetterMoistureRedux;
 [HarmonyPatch(typeof(BlockEntityFarmland), "updateMoistureLevel")]
 [HarmonyPatch(new Type[] { typeof(double), typeof(float), typeof(bool), typeof(ClimateCondition) })]
 public static class UpdateMoistureTranspiler {
+	public static ModConfig config = ModConfig.Instance;
 
 	public static float MoistureClampReplacement(float vanillaMath, float min, float max, float waterDistance) {
 		float vanillaClamped = GameMath.Clamp(vanillaMath, min, max);
-		float modClamped = ConfigLoader.Config.MoistureValues[GameMath.Clamp((int)waterDistance - 1, 0, ConfigLoader.Config.MoistureValues.Length - 1)];
+		float modClamped = BetterMoistureReduxModSystem.config.MoistureValues[GameMath.Clamp((int)waterDistance - 1, 0, config.MoistureValues.Length - 1)];
 
-		if (ConfigLoader.Config.overwriteLowerThanVanillaValues && vanillaClamped > modClamped) {
+		if (config.overwriteLowerThanVanillaValues && vanillaClamped > modClamped) {
 			return vanillaClamped;
 		}
 
@@ -48,5 +49,32 @@ public static class UpdateMoistureTranspiler {
 
 			yield return code;
 		}
+	}
+}
+
+[HarmonyPatchCategory("removeFarmlandWaterSloshing")]
+[HarmonyPatch(typeof(BlockWater), nameof(BlockWater.GetAmbientSoundStrength))]
+public static class RemoveFarmlandAdjacentWaterSound {
+	[HarmonyPrefix]
+	public static bool Prefix(ref BlockWater __instance, ref ICoreAPI ___Api, ref float __result, IWorldAccessor world, BlockPos Pos) {
+		bool foundFarmland = false;
+		world.BlockAccessor.WalkBlocks(
+			new BlockPos(Pos.X - 1, Pos.Y, Pos.Z - 1),
+			new BlockPos(Pos.X + 1, Pos.Y, Pos.Z + 1),
+			(block, x, y, z) => {
+				if (block is BlockFarmland) {
+					foundFarmland = true;
+					return;
+				}
+			}
+		);
+
+		if (foundFarmland) {
+			__result = 0f;
+			return false;
+		}
+
+
+		return true;
 	}
 }

@@ -3,8 +3,8 @@ using Newtonsoft.Json;
 
 
 public class ModConfig {
+	public static string ConfigName = "BetterMoistureRedux.json";
 	public static ModConfig Instance { get; set; } = new ModConfig();
-
 
 	[JsonIgnore]
 	public float[] MoistureValues {
@@ -20,4 +20,5 @@ public class ModConfig {
 	public int radius4 = 0;
 
 	public bool overwriteLowerThanVanillaValues = false;
+	public bool removeFarmlandAdjacentWaterSound = true;
 }
